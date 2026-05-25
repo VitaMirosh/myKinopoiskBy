@@ -1,0 +1,30 @@
+.container {
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 100px;
+}
+.navContainer {
+    display: flex;
+    gap: 20px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+
+
+    a{
+        text-decoration: none;
+        color: #1F2937;
+    }
+    a:hover{
+        color:#646cff;
+    }
+}
+.light{
+    background-color:  #f8fafc;
+    color:#1F2937;
+}
+.dark{
+    background-color: #0b1120;
+    color:white;
+}
