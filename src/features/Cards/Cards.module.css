@@ -1,0 +1,28 @@
+.container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns:repeat(5,200px);
+    grid-template-rows:repeat(4,320px);
+
+}
+
+.cart{
+    width: 150px;
+    height: 220px;
+    border: 1px solid black;
+    position: relative;
+
+}
+.vote{
+    position: absolute;
+    align-content: center;
+    text-align: center;
+    left: 120px;
+    top:190px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: yellow;
+
+
+}
