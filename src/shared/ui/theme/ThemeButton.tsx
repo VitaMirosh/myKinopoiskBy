@@ -4,8 +4,9 @@ import {useAppSelector} from '@/app/hooks/useSelectorType.ts';
 import s from './Theme.module.css'
 import moon from '../../../assets/img/moon.svg'
 import sun from '../../../assets/img/sun.svg'
+import {Btn} from '@/shared/ui/Btn';
 
-export const Theme = () => {
+export const ThemeButton = () => {
   const dispatch = useAppDispatch()
   const themeMode = useAppSelector(selectedThemeMode)
   const changeHandlerMode = () => {
@@ -14,7 +15,7 @@ export const Theme = () => {
 
   return (
     <>
-      <button className={s.btn} onClick={changeHandlerMode}><img src={ themeMode === 'light' ? sun: moon}/></button>
+      <Btn className={s.btn} onClick={changeHandlerMode}><img src={ themeMode === 'light' ? sun: moon}/></Btn>
     </>
   )
 }
