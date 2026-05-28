@@ -1,5 +1,5 @@
 import {baseApi} from '@/app/baseApi/baseApi.ts';
-import type {BaseResponse, TopRatedBaseResponse} from '@/entities/model/types/baseResponse.ts';
+import type {BaseResponse} from '@/entities/model/types/baseResponse.ts';
 
 
 const cardsApi = baseApi.injectEndpoints({
@@ -7,11 +7,17 @@ const cardsApi = baseApi.injectEndpoints({
       getPopularMovie: build.query<BaseResponse,void>({
         query: () => '/movie/popular'
       }),
-      getTopRated: build.query<TopRatedBaseResponse,void>({
+      getTopRatedMovie: build.query<BaseResponse,void>({
         query: () => '/movie/top_rated'
+      }),
+      getUpcomingMovie: build.query<BaseResponse,void>({
+        query: () => '/movie/upcoming'
+      }),
+      getNowPlayingMovie: build.query<BaseResponse,void>({
+        query: () => 'movie/now_playing'
       }),
     }
   ),
 
 })
-export const { useGetPopularMovieQuery, useGetTopRatedQuery} = cardsApi;
+export const { useGetPopularMovieQuery, useGetTopRatedMovieQuery,useGetUpcomingMovieQuery,useGetNowPlayingMovieQuery} = cardsApi;
