@@ -1,4 +1,4 @@
-type MovieResult={
+export type MoviesResponse = {
   adult?: boolean
   backdrop_path: string
   genre_ids: number[]
@@ -15,33 +15,12 @@ type MovieResult={
   vote_count?: number
 }
 
-
 export type BaseResponse={
   page?: number;
-  results: MovieResult[];
+  results: MoviesResponse[];
   total_pages: number
   total_results: number
 
 }
-export type TopRatedResponse={
-  backdrop_path: string
-  first_air_date: string
-  genre_ids: number[]
-  id:number
-  name: string
-  origin_country:string[]
-  original_language: string
-  original_name: string
-  overview: string
-  popularity: number
-  poster_path: string
-  vote_average: number
-  vote_count: number
-}
-export type TopRatedBaseResponse={
-  page?: number;
-  results: TopRatedResponse[];
-  total_pages: number
-  total_results: number
 
-}
+
