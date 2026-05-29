@@ -1,1 +1,1 @@
-export {Theme} from "./Theme.tsx";
+export {ThemeButton} from "./ThemeButton.tsx";
