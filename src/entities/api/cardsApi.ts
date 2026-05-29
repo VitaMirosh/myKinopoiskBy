@@ -5,7 +5,9 @@ import type {BaseResponse} from '@/entities/model/types/baseResponse.ts';
 const cardsApi = baseApi.injectEndpoints({
   endpoints: build => ({
       getPopularMovie: build.query<BaseResponse,void>({
-        query: () => '/movie/popular'
+        query: () =>
+          '/movie/popular',
+
       }),
       getTopRatedMovie: build.query<BaseResponse,void>({
         query: () => '/movie/top_rated'

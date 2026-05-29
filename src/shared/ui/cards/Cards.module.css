@@ -3,18 +3,20 @@
     justify-content: center;
     grid-template-columns:repeat(5, 200px);
     grid-template-rows:repeat(4, 320px);
+    gap:10px
 
 }
-
 
 .cart {
     width: 150px;
     height: 220px;
-    border: 1px solid black;
     position: relative;
+    list-style-type: none;
 
 }
-
+.img{
+    border-radius: 15px;
+}
 .vote {
     position: absolute;
     align-content: center;
