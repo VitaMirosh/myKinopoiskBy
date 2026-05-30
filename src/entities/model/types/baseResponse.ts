@@ -2,7 +2,7 @@ export type MoviesResponse = {
   adult?: boolean
   backdrop_path: string
   genre_ids: number[]
-  id?:number
+  id?: number
   original_language: string
   original_title: string
   overview: string
@@ -15,12 +15,26 @@ export type MoviesResponse = {
   vote_count?: number
 }
 
-export type BaseResponse={
-  page?: number;
-  results: MoviesResponse[];
+export type BaseResponse = {
+  page?: number
+  results: MoviesResponse[]
   total_pages: number
   total_results: number
-
+}
+export type KewordResponse = {
+  adult: boolean
+  backdrop_path: string
+  id: number
+  name: string
+  original_language: string
+  original_name: string
+  overview: string
+  poster_path: string
 }
 
-
+export type SearchResponse = {
+  page?: number
+  results: KewordResponse[]
+  total_pages: number
+  total_results: number
+}
