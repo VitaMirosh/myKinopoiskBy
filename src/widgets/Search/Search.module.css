@@ -1,0 +1,58 @@
+.containerCardS {
+    display: grid;
+    grid-template-columns:repeat(5, 200px);
+    grid-template-rows:repeat(4, 320px);
+    gap:20px
+}
+
+.cart{
+    width: 200px;
+    height: 280px;
+    list-style-type: none;
+
+    background: #eae9e9;
+    border-radius: 15px;
+    position: relative;
+    margin-bottom: 10px;
+    z-index: 1;
+
+}
+.container{
+    display: flex;
+    min-width: 600px;
+    flex-direction: column;
+    margin:10px 0 0 100px ;
+}
+.inputButton{
+    display: flex;
+    flex-direction:row;
+    align-content: center;
+
+}
+.input{
+    width:450px;
+    height: 40px;
+    border-radius: 30px;
+    padding-left: 10px;
+}
+.input:focus{
+    border: 5px solid blue;
+}
+.button{
+    width: 90px;
+    height: 42px;
+    border-radius: 30px;
+    margin-left: 10px;
+    background: #646cff;
+
+}
+.button:hover{
+    background: #f8daff;
+}
+.noposter{
+    position: absolute;
+    top:35%;
+    left: 35%;
+    z-index:-1;
+
+}
