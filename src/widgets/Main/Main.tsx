@@ -5,11 +5,11 @@ import { Path } from "@/shared/lib/constants"
 import { TopRatedMovies } from "@/features/TopRatedMovies/TopRatedMovies.tsx"
 import { UpcomingMovies } from "@/features/UpcomingMovies/UpcomingMovies.tsx"
 import { NowPlayingMovies } from "@/features/NowPlayingMovies/NowPlayingMovies.tsx"
-import { Search } from "@/widgets/Search"
 import { getImageUrl } from "@/app/baseApi/baseImageApi.ts"
 
 import { useGetUpcomingMovieQuery } from "@/entities/api/cardsApi.ts"
 import { useEffect, useState } from "react"
+import { Welcome } from "@/widgets/Main/Welcome"
 
 const moviesMap = [
   { title: "Popular Movies", link: Path.Popular, component: PopularMovies },
@@ -37,7 +37,7 @@ export const Main = () => {
     <div className={s.container}>
       <div className={s.container2}>
         <img src={getImageUrl(randomPosterImg, "w500")} alt="Random movie poster" className={s.img} />
-        <Search />
+        <Welcome />
       </div>
 
       <div className={s.title}>
@@ -49,10 +49,7 @@ export const Main = () => {
                 View more
               </NavLink>
             </div>
-
-            <div className={s.element}>
-              <movie.component />
-            </div>
+            <movie.component className={s.count} />
           </div>
         ))}
       </div>
