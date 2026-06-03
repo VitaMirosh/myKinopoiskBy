@@ -1,39 +1,40 @@
-import { Btn } from "@/shared/ui/Btn"
-import { type ChangeEvent, useState } from "react"
 import s from "./Search.module.css"
+import { SearchInput } from "@/shared/ui/SearchInput/SearchInput.tsx"
 import { useGetSearchKeywordQuery } from "@/entities/api/cardsApi.ts"
+import { type ChangeEvent, useState } from "react"
 import { getImageUrl } from "@/app/baseApi/baseImageApi.ts"
+import { Btn } from "@/shared/ui/Btn"
+import { useSearchParams } from "react-router"
 
 export const Search = () => {
-  const [search, setSearch] = useState("")
-  const [query, setQuery] = useState("")
+  const [params, setParams] = useSearchParams()
+  const query = params.get("query") ?? ""
+  const [search, setSearch] = useState(query)
   const { data } = useGetSearchKeywordQuery(query)
 
-  const searchMovies = (event: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
-    setSearch(event.currentTarget.value)
+  const searchMovies = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value)
   }
   const sendTitle = () => {
-    setQuery(search)
+    if (search.trim()) {
+      setParams({ query: search })
+    } else {
+      setParams({})
+    }
   }
-
   return (
     <div className={s.container}>
-      <h1>Search results</h1>
+      <h1 className={s.searchTitle}>Search results</h1>
       <div className={s.inputButton}>
-        <input
-          type={"search"}
-          placeholder={"Search for movie"}
-          value={search}
-          onChange={searchMovies}
-          className={s.input}
-        />
-        <Btn onClick={sendTitle} className={s.button}>
+        <SearchInput query={search} changeHandler={searchMovies} />
+        <Btn onClick={sendTitle} className={!search ? s.disabled : s.button} disabled={!search}>
           Send
         </Btn>
       </div>
+      {!query && <p>Enter a movie title to start searching</p>}
       <div className={s.containerCardS}>
-        {search &&
-          data?.results?.map((keyWord) => (
+        {data?.results &&
+          data?.results.map((keyWord) => (
             <ul key={keyWord.id}>
               <li className={s.cart}>
                 <img
@@ -41,13 +42,12 @@ export const Search = () => {
                   width={200}
                   height={280}
                   style={{ borderRadius: "15px" }}
-                />{" "}
+                />
                 <p className={s.noposter}>No poster</p>
               </li>
               {keyWord.name}
             </ul>
           ))}
-        {!search && <p>Enter a movie title to start searching</p>}
       </div>
     </div>
   )
