@@ -1,8 +1,7 @@
 import { SearchInput } from "@/shared/ui/SearchInput/SearchInput.tsx"
 import { Btn } from "@/shared/ui/Btn"
 import s from "./Welcome.module.css"
-import { NavLink, useNavigate, useSearchParams } from "react-router"
-import { Path } from "@/shared/lib/constants"
+import { useNavigate, useSearchParams } from "react-router"
 import type { ChangeEvent } from "react"
 
 export const Welcome = () => {
@@ -29,11 +28,9 @@ export const Welcome = () => {
       <p className={s.welcomeText}>Browser highlighted title from TMDB</p>
       <div className={s.inputButton}>
         <SearchInput query={query ?? ""} changeHandler={changeHandler} />
-        <NavLink to={Path.Search + "?" + searchParams}>
-          <Btn className={!query ? s.disabled : s.button} onClick={goToSearch} disabled={!query}>
-            Search
-          </Btn>
-        </NavLink>
+        <Btn className={!query ? s.disabled : s.button} onClick={goToSearch} disabled={!query}>
+          Search
+        </Btn>
       </div>
     </div>
   )
