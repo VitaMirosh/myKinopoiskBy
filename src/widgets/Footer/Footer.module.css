@@ -1,6 +1,11 @@
 .container {
     display: flex;
-    justify-content: space-around;
+    height:60px ;
+    justify-content: center;
+    align-content: center;
     align-items: center;
+    margin-bottom:-100px;
+    background: var(--bg-footer);
+    color: var(--text-footer);
 
 }

@@ -1,10 +1,13 @@
 .container {
-    background-color: #f3f4f6;
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0 100px;
+    height: 100px;
+    background: var(--bg-header);
+
 }
+
 .navContainer {
     display: flex;
     gap: 20px;
@@ -14,17 +17,29 @@
 
     a{
         text-decoration: none;
-        color: #1F2937;
+        font-size: 20px;
+        letter-spacing: 0.1rem;
+        color: var(--text-header);
     }
     a:hover{
         color:#646cff;
     }
-}
-.light{
-    background-color:  #f8fafc;
-    color:#1F2937;
-}
-.dark{
-    background-color: #0b1120;
-    color:white;
+    a::after{
+        content: "";
+        border-right: 2px solid black;
+        height: 10px;
+        padding-right: 20px;
+
+
+        :last-child{
+            content: "";
+            border: none;
+
+        }
+
+    }
+    a:last-child::after {
+        border: none;
+    }
+
 }
