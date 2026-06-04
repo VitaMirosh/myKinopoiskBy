@@ -12,10 +12,10 @@ import { useEffect, useState } from "react"
 import { Welcome } from "@/widgets/Main/Welcome"
 
 const moviesMap = [
-  { title: "Popular Movies", link: Path.Popular, component: PopularMovies },
-  { title: "Top Rated Movies", link: Path.Top, component: TopRatedMovies },
-  { title: "Upcoming Movies", link: Path.Upcoming, component: UpcomingMovies },
-  { title: "Now Playing Movies", link: Path.Now, component: NowPlayingMovies },
+  { link: Path.Popular, component: PopularMovies },
+  { link: Path.Top, component: TopRatedMovies },
+  { link: Path.Upcoming, component: UpcomingMovies },
+  { link: Path.Now, component: NowPlayingMovies },
 ]
 
 export const Main = () => {
@@ -39,16 +39,12 @@ export const Main = () => {
         <img src={getImageUrl(randomPosterImg, "w500")} alt="Random movie poster" className={s.img} />
         <Welcome />
       </div>
-
       <div className={s.title}>
-        {moviesMap.map((movie) => (
-          <div key={movie.title} className={s.block}>
-            <div className={s.wrapper}>
-              <h2>{movie.title}</h2>
-              <NavLink to={movie.link} className={({ isActive }) => (isActive ? s.calm : s.calm)}>
-                View more
-              </NavLink>
-            </div>
+        {moviesMap.map((movie, index) => (
+          <div key={index} className={s.block}>
+            <NavLink to={movie.link} className={({ isActive }) => (isActive ? s.calm : s.calm)}>
+              View more
+            </NavLink>
             <movie.component className={s.count} />
           </div>
         ))}
