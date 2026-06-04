@@ -10,7 +10,7 @@ export const Search = () => {
   const [params, setParams] = useSearchParams()
   const query = params.get("query") ?? ""
   const [search, setSearch] = useState(query)
-  const { data } = useGetSearchKeywordQuery(query)
+  const { data } = useGetSearchKeywordQuery(search, { skip: !query })
 
   const searchMovies = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value)
@@ -22,6 +22,7 @@ export const Search = () => {
       setParams({})
     }
   }
+
   return (
     <div className={s.container}>
       <h1 className={s.searchTitle}>Search results</h1>
