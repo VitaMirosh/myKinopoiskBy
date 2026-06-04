@@ -4,14 +4,18 @@ import { Footer } from "@/widgets/Footer"
 import { Routing } from "@/app/routes"
 import { useAppSelector } from "@/app/hooks/useSelectorType.ts"
 import { selectedThemeMode } from "@/app/app-slice/app-slice.ts"
-import clsx from "clsx"
 import s from "@/widgets/Header/Header.module.css"
+import { useEffect } from "react"
 
 function App() {
   const themeMode = useAppSelector(selectedThemeMode)
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", themeMode)
+  }, [themeMode])
+
   return (
-    <div className={clsx("container", s[themeMode])}>
+    <div className={"container"}>
       <Header />
       <div className={s.routing}>
         <Routing />
