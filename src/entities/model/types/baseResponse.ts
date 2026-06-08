@@ -14,13 +14,6 @@ export type MoviesResponse = {
   vote_average?: number
   vote_count?: number
 }
-
-export type BaseResponse = {
-  page?: number
-  results: MoviesResponse[]
-  total_pages: number
-  total_results: number
-}
 export type KewordResponse = {
   adult: boolean
   backdrop_path: string
@@ -32,9 +25,18 @@ export type KewordResponse = {
   poster_path: string
 }
 
-export type SearchResponse = {
+export type BaseResponse<T> = {
   page?: number
-  results: KewordResponse[]
+  results: T[]
   total_pages: number
   total_results: number
+}
+
+export type GenreItem = {
+  id: number
+  name: string
+}
+
+export type GenreResponse = {
+  genres: GenreItem[]
 }
