@@ -1,0 +1,140 @@
+.container {
+    max-width: 400px;
+    max-height: 800px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 200px;
+    background: rgb(194 189 189 / 0.45);
+    padding: 40px 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.selectWrapper{
+    display: flex;
+    flex-direction: row;
+}
+.select{
+    margin-left: 30px;
+    width:250px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.select:hover{
+    margin-left: 30px;
+    width:250px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+    border: 1px solid #11decf;
+}
+
+.sliderWrapper {
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+.wrapper {
+    display: flex;
+    position: relative;
+    width: 200px;
+    height: 30px;
+}
+
+.inputWrapper {
+    width: 100%;
+    height: 5px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+}
+
+
+input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    pointer-events: none;
+
+}
+
+
+input[type='range']::-webkit-slider-runnable-track {
+    height: 1px;
+    background: #646cff;
+
+}
+
+input[type='range']:active::-webkit-slider-runnable-track {
+    height: 1px;
+    background:#11decf;
+
+}
+input[type='range']::-moz-range-track {
+    height: 5px;
+}
+
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    background-color:  #646cff;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+input[type='range']::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+    background-color:  #646cff;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+
+input[type='range']:active::-webkit-slider-thumb {
+    background-color:#11decf;
+    /*border: 5px solid #21d01c;*/
+}
+.btnWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 20px;
+
+}
+.btn{
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+.btn:hover{
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid #26cec1;
+    color: #11decf;
+}
+.btnReset{
+    margin-top: 20px;
+    width:130px;
+    padding: 10px 0px;
+    border-radius: 30px;
+    background: #646cff;
+    color: #ffffff;
+    font-size: 16px;
+
+
+}
+.btnReset:hover{
+    background: #6168ea;
+}
