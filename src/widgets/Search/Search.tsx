@@ -38,13 +38,10 @@ export const Search = () => {
           data?.results.map((keyWord) => (
             <ul key={keyWord.id}>
               <li className={s.cart}>
-                <img
-                  src={getImageUrl(keyWord.poster_path, "w500")}
-                  width={200}
-                  height={280}
-                  style={{ borderRadius: "15px" }}
-                />
-                <p className={s.noposter}>No poster</p>
+                <div className={s.imgWrap}>
+                  <img src={getImageUrl(keyWord.poster_path, "w500")} className={s.img} />
+                  <p className={s.noposter}>No poster</p>
+                </div>
               </li>
               {keyWord.name}
             </ul>
