@@ -1,16 +1,17 @@
 import s from "./Search.module.css"
 import { SearchInput } from "@/shared/ui/SearchInput/SearchInput.tsx"
-import { useGetSearchKeywordQuery } from "@/entities/api/cardsApi.ts"
-import { type ChangeEvent, useState } from "react"
+import { useLazyGetSearchKeywordQuery } from "@/entities/api/cardsApi.ts"
+import { type ChangeEvent, useEffect, useState } from "react"
 import { getImageUrl } from "@/app/baseApi/baseImageApi.ts"
 import { Btn } from "@/shared/ui/Btn"
 import { useSearchParams } from "react-router"
+import remove from "./../../assets/img/remove.svg"
 
 export const Search = () => {
   const [params, setParams] = useSearchParams()
   const query = params.get("query") ?? ""
   const [search, setSearch] = useState(query)
-  const { data } = useGetSearchKeywordQuery(search, { skip: !query })
+  const [trigger, { data }] = useLazyGetSearchKeywordQuery()
 
   const searchMovies = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value)
@@ -18,22 +19,45 @@ export const Search = () => {
   const sendTitle = () => {
     if (search.trim()) {
       setParams({ query: search })
+      trigger(search)
     } else {
       setParams({})
     }
   }
+  const deleteTitle = () => {
+    if (search) {
+      setParams({})
+      setSearch("")
+      trigger("")
+    }
+  }
+
+  useEffect(() => {
+    if (query) trigger(search)
+  }, [])
 
   return (
     <div className={s.container}>
       <h1 className={s.searchTitle}>Search results</h1>
       <div className={s.inputButton}>
-        <SearchInput query={search} changeHandler={searchMovies} />
+        <div className={s.input}>
+          <SearchInput query={search} changeHandler={searchMovies} />
+          <Btn onClick={deleteTitle} className={!search ? s.hidden : s.show}>
+            <img src={remove}></img>
+          </Btn>
+        </div>
         <Btn onClick={sendTitle} className={!search ? s.disabled : s.button} disabled={!search}>
           Send
         </Btn>
       </div>
-      {!query && <p>Enter a movie title to start searching</p>}
+      {!query && <p className={s.title}>Enter a movie title to start searching</p>}
       <div className={s.containerCardS}>
+        {query && data?.results?.length === 0 && (
+          <div>
+            <h4 className={s.result}>Results for "{search}"</h4>
+            <p className={s.title}>No matches for "{search}"</p>
+          </div>
+        )}
         {data?.results &&
           data?.results.map((keyWord) => (
             <ul key={keyWord.id}>
