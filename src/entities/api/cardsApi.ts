@@ -38,6 +38,6 @@ export const {
   useGetTopRatedMovieQuery,
   useGetUpcomingMovieQuery,
   useGetNowPlayingMovieQuery,
-  useGetSearchKeywordQuery,
+  useLazyGetSearchKeywordQuery,
   useGetGenresQuery,
 } = cardsApi
