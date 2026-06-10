@@ -30,6 +30,7 @@ export const FilterMovies = ({
 }: Props) => {
   const [range1, setRange1] = useState(0)
   const [range2, setRange2] = useState(10)
+  const [selectedSort, setSelectedSort] = useState("")
 
   const handleRange1 = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value)
@@ -51,16 +52,20 @@ export const FilterMovies = ({
   }
   const handlePopularityHandler = (event: ChangeEvent<HTMLSelectElement, HTMLSelectElement>) => {
     setPopularityHandler(event.target.value)
+    setSelectedSort(event.target.value)
   }
   const resetHandler = () => {
     resetAllFilters()
+    setRange1(0)
+    setRange2(10)
+    setSelectedSort(arraySelect[0].name)
   }
   return (
     <div className={s.container}>
       <h2> Filter / Sort</h2>
       <div className={s.selectWrapper}>
         <p>Sort by</p>
-        <select className={s.select} onChange={handlePopularityHandler}>
+        <select className={s.select} value={selectedSort} onChange={handlePopularityHandler}>
           {arraySelect.map((item, index) => (
             <option key={index} value={item.name}>
               {item.name}

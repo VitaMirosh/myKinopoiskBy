@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    min-width: 600px;
+    flex-direction: column;
+    margin:10px 0 0 100px ;
+}
+.title{
+    font-size: 60px;
+}
+.text{
+    font-size: 25px;
+}
