@@ -1,0 +1,105 @@
+.containerDetalis{;
+    margin:0 auto;
+    padding: 40px 80px;
+
+
+}
+
+.containerUp {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
+}
+.conteinerInfo{
+    display: flex;
+    flex-direction: column;
+    gap:40px
+}
+
+.containerTitle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title {
+    font-size: 45px;
+}
+
+.batton {
+    border: 1px solid rgb(124 117 117 / 0.61);
+    background-color: #c0b9ba;
+    width: 110px;
+    height: 35px;
+    border-radius: 50px;
+    text-align: center;
+    align-content: center;
+    text-decoration: none;
+    justify-self: end;
+}
+
+.batton:hover {
+    background-color: #8a8181;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+}
+
+.release {
+    font-size: 22px;
+}
+.runtime {
+    font-size: 22px;
+}
+
+.average{
+    align-content: center;
+    text-align: center;
+    left: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #24a180;
+    font-size: 22px;
+
+}
+.overview{
+    max-width: 1200px;
+    display: flex;
+    font-size: 20px;
+    flex-wrap: wrap;
+}
+
+.medaverage {
+    composes: average;
+    background: #b2b23c;
+}
+
+.smallaverage {
+    composes: average;
+    background: #ab3954;
+}
+.genre{
+    font-size: 22px;
+}
+.genreTitle{
+   display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: #c0b9ba;
+}
+.p{
+    display: flex;
+    gap: 20px;
+}

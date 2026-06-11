@@ -5,10 +5,11 @@ import { Main } from "@/widgets/Main"
 import { FilteredMovies } from "@/widgets/FilteredMovies"
 import { Search } from "@/widgets/Search"
 import { Favorites } from "@/widgets/Favorites"
-import { TopRatedMovies } from "@/features/TopRatedMovies/TopRatedMovies.tsx"
-import { PopularMovies } from "@/features/PopularMovies/PopularMovies.tsx"
-import { UpcomingMovies } from "@/features/UpcomingMovies/UpcomingMovies.tsx"
-import { NowPlayingMovies } from "@/features/NowPlayingMovies/NowPlayingMovies.tsx"
+import { TopRatedMovies } from "@/pages/TopRatedMovies/TopRatedMovies.tsx"
+import { PopularMovies } from "@/pages/PopularMovies/PopularMovies.tsx"
+import { UpcomingMovies } from "@/pages/UpcomingMovies/UpcomingMovies.tsx"
+import { NowPlayingMovies } from "@/pages/NowPlayingMovies/NowPlayingMovies.tsx"
+import { Details } from "@/pages/Details/Details.tsx"
 
 export const Routing = () => (
   <Routes>
@@ -22,5 +23,6 @@ export const Routing = () => (
     <Route path={Path.FilteredMovies} element={<FilteredMovies />} />
     <Route path={Path.Search} element={<Search />} />
     <Route path={Path.Favorites} element={<Favorites />} />
+    <Route path={Path.Details} element={<Details />} />
   </Routes>
 )
