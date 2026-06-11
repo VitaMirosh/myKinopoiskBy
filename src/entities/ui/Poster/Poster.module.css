@@ -1,0 +1,11 @@
+.containerImg{
+    width: 450px;
+    height: 650px;
+    object-fit: contain;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
