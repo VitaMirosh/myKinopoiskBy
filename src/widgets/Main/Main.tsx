@@ -1,10 +1,10 @@
-import { PopularMovies } from "@/features/PopularMovies/PopularMovies.tsx"
+import { PopularMovies } from "@/pages/PopularMovies/PopularMovies.tsx"
 import s from "./Main.module.css"
 import { NavLink } from "react-router"
 import { Path } from "@/shared/lib/constants"
-import { TopRatedMovies } from "@/features/TopRatedMovies/TopRatedMovies.tsx"
-import { UpcomingMovies } from "@/features/UpcomingMovies/UpcomingMovies.tsx"
-import { NowPlayingMovies } from "@/features/NowPlayingMovies/NowPlayingMovies.tsx"
+import { TopRatedMovies } from "@/pages/TopRatedMovies/TopRatedMovies.tsx"
+import { UpcomingMovies } from "@/pages/UpcomingMovies/UpcomingMovies.tsx"
+import { NowPlayingMovies } from "@/pages/NowPlayingMovies/NowPlayingMovies.tsx"
 import { getImageUrl } from "@/app/baseApi/baseImageApi.ts"
 
 import { useGetUpcomingMovieQuery } from "@/entities/api/cardsApi.ts"
@@ -19,7 +19,7 @@ const moviesMap = [
 ]
 
 export const Main = () => {
-  const { data } = useGetUpcomingMovieQuery()
+  const { data } = useGetUpcomingMovieQuery({ pageNumber: 1 })
 
   const images = data?.results || []
   const [randomPosterNum, setRandomPosterNum] = useState<number | null>(null)
@@ -45,7 +45,7 @@ export const Main = () => {
             <NavLink to={movie.link} className={({ isActive }) => (isActive ? s.calm : s.calm)}>
               View more
             </NavLink>
-            <movie.component className={s.count} />
+            <movie.component className={s.count} isPagination={false} />
           </div>
         ))}
       </div>

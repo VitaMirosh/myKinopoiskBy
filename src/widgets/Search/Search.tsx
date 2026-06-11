@@ -6,11 +6,13 @@ import { getImageUrl } from "@/app/baseApi/baseImageApi.ts"
 import { Btn } from "@/shared/ui/Btn"
 import { useSearchParams } from "react-router"
 import remove from "./../../assets/img/remove.svg"
+import { Pagination } from "@/shared/ui/Pagination/Pagination.tsx"
 
 export const Search = () => {
   const [params, setParams] = useSearchParams()
   const query = params.get("query") ?? ""
   const [search, setSearch] = useState(query)
+  const [currentPage, setCurrentPage] = useState(1)
   const [trigger, { data }] = useLazyGetSearchKeywordQuery()
 
   const searchMovies = (event: ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +21,7 @@ export const Search = () => {
   const sendTitle = () => {
     if (search.trim()) {
       setParams({ query: search })
-      trigger(search)
+      trigger({ search })
     } else {
       setParams({})
     }
@@ -28,13 +30,17 @@ export const Search = () => {
     if (search) {
       setParams({})
       setSearch("")
-      trigger("")
+      trigger({ search: "" })
     }
   }
 
   useEffect(() => {
-    if (query) trigger(search)
+    if (query) trigger({ search })
   }, [])
+
+  useEffect(() => {
+    trigger({ search, page: currentPage })
+  }, [currentPage])
 
   return (
     <div className={s.container}>
@@ -58,18 +64,23 @@ export const Search = () => {
             <p className={s.title}>No matches for "{search}"</p>
           </div>
         )}
-        {data?.results &&
-          data?.results.map((keyWord) => (
-            <ul key={keyWord.id}>
-              <li className={s.cart}>
-                <div className={s.imgWrap}>
-                  <img src={getImageUrl(keyWord.poster_path, "w500")} className={s.img} />
-                  <p className={s.noposter}>No poster</p>
-                </div>
-              </li>
-              {keyWord.name}
-            </ul>
-          ))}
+        <div className={s.paginationConteiner}>
+          {data?.results &&
+            data?.results.map((keyWord) => (
+              <ul key={keyWord.id}>
+                <li className={s.cart}>
+                  <div className={s.imgWrap}>
+                    <img src={getImageUrl(keyWord.poster_path, "w500")} className={s.img} />
+                    <p className={s.noposter}>No poster</p>
+                  </div>
+                </li>
+                {keyWord.name}
+              </ul>
+            ))}
+        </div>
+        <div className={s.pagination}>
+          <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
+        </div>
       </div>
     </div>
   )
