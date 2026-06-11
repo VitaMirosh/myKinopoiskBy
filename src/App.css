@@ -21,7 +21,7 @@
     --text-header: #000000;
 
     --bg-footer: #eaeaea;
-    --text-footer: #000000;
+    --text-footer: #0c0909;
 }
 
 :root[data-theme="dark"] {
@@ -33,7 +33,7 @@
     --text-header: #ffffff;
 
     --bg-footer: #395486;
-    --text-footer: #ffffff;
+    --text-footer: #fcf5f5;
 }
 
 body {

@@ -4,7 +4,9 @@
     grid-template-columns:repeat(5, 200px);
     grid-template-rows:repeat(4, 320px);
     gap: 24px;
-
+}
+.ulContainer{
+    width: 1000px;
 }
 
 ul {
@@ -23,7 +25,9 @@ ul {
     width: 190px;
     height: 280px;
     border-radius: 15px;
+    border: none;
     overflow: hidden;
+    background-color: transparent;
 }
 
 .img {
