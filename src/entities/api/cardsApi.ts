@@ -1,6 +1,7 @@
 import { baseApi } from "@/app/baseApi/baseApi.ts"
 import type {
   BaseResponse,
+  DetailsResponse,
   GenreResponse,
   KewordResponse,
   MoviesResponse,
@@ -8,28 +9,54 @@ import type {
 
 const cardsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getPopularMovie: build.query<BaseResponse<MoviesResponse>, void>({
-      query: () => "/movie/popular",
+    getPopularMovie: build.query<BaseResponse<MoviesResponse>, { pageNumber: number }>({
+      query: ({ pageNumber }) => ({
+        url: "/movie/popular",
+        params: {
+          page: pageNumber,
+        },
+      }),
     }),
-    getTopRatedMovie: build.query<BaseResponse<MoviesResponse>, void>({
-      query: () => "/movie/top_rated",
+    getTopRatedMovie: build.query<BaseResponse<MoviesResponse>, { pageNumber: number }>({
+      query: ({ pageNumber }) => ({
+        url: "/movie/top_rated",
+        params: {
+          page: pageNumber,
+        },
+      }),
     }),
-    getUpcomingMovie: build.query<BaseResponse<MoviesResponse>, void>({
-      query: () => "/movie/upcoming",
+    getUpcomingMovie: build.query<BaseResponse<MoviesResponse>, { pageNumber: number }>({
+      query: ({ pageNumber }) => ({
+        url: "/movie/upcoming",
+        params: {
+          page: pageNumber,
+        },
+      }),
     }),
-    getNowPlayingMovie: build.query<BaseResponse<MoviesResponse>, void>({
-      query: () => "movie/now_playing",
+    getNowPlayingMovie: build.query<BaseResponse<MoviesResponse>, { pageNumber: number }>({
+      query: ({ pageNumber }) => ({
+        url: "movie/now_playing",
+        params: {
+          page: pageNumber,
+        },
+      }),
     }),
-    getSearchKeyword: build.query<BaseResponse<KewordResponse>, string>({
-      query: (search) => ({
+    getSearchKeyword: build.query<BaseResponse<KewordResponse>, { search: string; page?: number }>({
+      query: ({ search, page = 1 }) => ({
         url: "search/collection",
         params: {
           query: search,
+          page,
         },
       }),
     }),
     getGenres: build.query<GenreResponse, void>({
       query: () => "genre/movie/list",
+    }),
+    getDetailsMovie: build.query<DetailsResponse, number>({
+      query: (id) => ({
+        url: `movie/${id}`,
+      }),
     }),
   }),
 })
@@ -40,4 +67,5 @@ export const {
   useGetNowPlayingMovieQuery,
   useLazyGetSearchKeywordQuery,
   useGetGenresQuery,
+  useGetDetailsMovieQuery,
 } = cardsApi
