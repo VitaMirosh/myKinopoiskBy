@@ -7,30 +7,35 @@ import { useAppDispatch } from "@/app/hooks/useDispatchType.ts"
 import { selectedFavoriteMovie, toggleFavoriteMovieAC } from "@/app/app-slice/app-slice.ts"
 
 import { useAppSelector } from "@/app/hooks/useSelectorType.ts"
+import { useNavigate } from "react-router"
 
 type Props = {
   data?: BaseResponse<MoviesResponse>
   className?: string
   filtered?: MoviesResponse[]
-  id?: (number | undefined)[]
 }
 
 export const Cards = ({ data, className, filtered }: Props) => {
   const dispatch = useAppDispatch()
   const favoriteMovies = useAppSelector(selectedFavoriteMovie)
+  const navigate = useNavigate()
+
   const filteredResponse: MoviesResponse[] = filtered && filtered.length > 0 ? filtered : (data?.results ?? [])
+
   const getFavoriteMovies = (id: number) => {
     const movie = filteredResponse.find((m) => m.id === id)
     if (!movie) return
     dispatch(toggleFavoriteMovieAC({ movie }))
   }
-
+  const goToDetails = (id: number) => {
+    navigate(`/details/${id}`)
+  }
   return (
     <div className={className ? className : s.container}>
       {filteredResponse.map((cart) => {
         const isActive = favoriteMovies.some((m) => m.id === cart.id)
         return (
-          <ul key={cart.id}>
+          <ul key={cart.id} className={s.ulContainer}>
             <li className={s.cart}>
               <Btn
                 className={isActive ? s.activeFavorite : s.btn}
@@ -38,15 +43,16 @@ export const Cards = ({ data, className, filtered }: Props) => {
               >
                 <img src={like} />
               </Btn>
+
               {cart.vote_average && (
                 <div className={cart.vote_average > 7.5 ? s.vote : cart.vote_average > 5.5 ? s.medVote : s.smallVote}>
                   {cart.vote_average.toFixed(1)}
                 </div>
               )}
               {cart.poster_path && (
-                <div className={s.imgWrap}>
+                <Btn className={s.imgWrap} onClick={() => goToDetails(cart.id)}>
                   <img src={getImageUrl(cart.poster_path, "w500")} alt={cart.title} className={s.img} />
-                </div>
+                </Btn>
               )}
               {cart.title}
             </li>
