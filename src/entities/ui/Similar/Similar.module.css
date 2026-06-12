@@ -1,0 +1,37 @@
+.similarContainer {
+    display: flex;
+    align-content: center;
+    margin-top: 40px;
+
+}
+
+.similar {
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding-bottom: 25px;
+    margin: 0 auto;
+    font-size: 20px;
+    text-align: center;
+
+
+    :nth-child(n+7) {
+        display: none;
+    }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+}
+.similarTitle{
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+    margin-top: 40px;
+    font-weight: bold;
+
+}
