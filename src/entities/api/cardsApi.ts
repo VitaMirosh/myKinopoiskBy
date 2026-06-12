@@ -1,6 +1,7 @@
 import { baseApi } from "@/app/baseApi/baseApi.ts"
 import type {
   BaseResponse,
+  CreditsResponse,
   DetailsResponse,
   GenreResponse,
   KewordResponse,
@@ -58,6 +59,11 @@ const cardsApi = baseApi.injectEndpoints({
         url: `movie/${id}`,
       }),
     }),
+    getMovieCredits: build.query<CreditsResponse, number>({
+      query: (id) => ({
+        url: `movie/${id}/credits`,
+      }),
+    }),
   }),
 })
 export const {
@@ -68,4 +74,5 @@ export const {
   useLazyGetSearchKeywordQuery,
   useGetGenresQuery,
   useGetDetailsMovieQuery,
+  useGetMovieCreditsQuery,
 } = cardsApi
