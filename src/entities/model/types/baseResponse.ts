@@ -47,34 +47,41 @@ export type Belongs = {
   backdrop_path: string
 }
 
-export type Companies = {
-  id: number
-  logo_path: string
-  name: string
-  origin_country: string
-}
-export type Countries = {
-  iso_3166_1: string
-  name: string
-}
 export type DetailsResponse = {
   backdrop_path: string
   belongs_to_collection: Belongs[]
   genres: GenreItem[]
   homepage: string
   id: number
-  imdb_id: string
-  origin_country: string[]
-  original_language: string
   original_title: string
   overview: string
   popularity: number
   poster_path: string
-  production_companies: Companies[]
-  production_countries: Countries[]
   release_date: string
   title: string
   vote_average: number
-  vote_count: number
   runtime: number
+}
+type Cast = {
+  adult: boolean
+  gender: number
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  cast_id: number
+  character: string
+  credit_id: string
+  order: number
+}
+type Crew = {
+  name: string
+  job: string
+}
+export type CreditsResponse = {
+  id: number
+  cast: Cast[]
+  crew: Crew[]
 }
