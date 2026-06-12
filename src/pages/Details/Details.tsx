@@ -3,11 +3,14 @@ import { useGetDetailsMovieQuery } from "@/entities/api/cardsApi.ts"
 import { useNavigate, useParams } from "react-router"
 import { Btn } from "@/shared/ui/Btn"
 import s from "./Details.module.css"
+import { Cast } from "@/entities/ui/Cast/Cast.tsx"
+import { Similar } from "@/entities/ui/Similar/Similar.tsx"
 
 export const Details = () => {
   const { id } = useParams()
   const movieId = Number(id)
   const { data } = useGetDetailsMovieQuery(movieId)
+
   const navigate = useNavigate()
   const backNavigate = () => {
     navigate(-1)
@@ -50,6 +53,10 @@ export const Details = () => {
           </div>
         </div>
       </div>
+
+      {data?.id && <Cast id={data?.id} />}
+
+      {data?.genres && <Similar id={data?.genres.map((g) => g.id)} />}
     </div>
   )
 }
