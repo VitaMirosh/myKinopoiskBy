@@ -5,13 +5,14 @@ export const baseApi = createApi({
   tagTypes: ["PopularMovies"],
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL,
-    prepareHeaders: (headers) => {
-      const tmdbToken = import.meta.env.VITE_API_KEY
-
-      if (tmdbToken) {
-        headers.set("Authorization", `Bearer ${tmdbToken}`)
+    prepareHeaders: async (headers) => {
+      if (!window.__tmdbToken) {
+        const res = await fetch("/api/key")
+        const data = await res.json()
+        window.__tmdbToken = data.token
       }
 
+      headers.set("Authorization", `Bearer ${window.__tmdbToken}`)
       return headers
     },
   }),
