@@ -1,0 +1,23 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.item {
+    background: rgb(29 168 152 / 0.22);
+    border-radius: 6px;
+    width: 200px;
+    height: 250px;
+}
+.itemName{
+    margin-top: 5px;
+    background: rgb(29 168 152 / 0.22);
+    width: 150px;
+    height: 20px;
+
+}
+
+
+
