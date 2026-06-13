@@ -3,6 +3,8 @@
     grid-template-rows: repeat(2, auto);
     grid-template-columns: 1fr;
     min-height: 100vh;
+    overflow: hidden;
+    margin-bottom: 20px;
 
 }
 
@@ -49,7 +51,7 @@
 }
 
 
-.calm {
+.btn {
     color: black;
     color: var(--text-footer);
     border: 1px solid rgb(124 117 117 / 0.61);
@@ -67,7 +69,7 @@
 
 }
 
-.calm:hover {
+.btn:hover {
     background-color: #c0b9ba;
 }
 
