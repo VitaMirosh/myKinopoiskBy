@@ -1,0 +1,22 @@
+.loading {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #2faba8;
+  overflow: hidden;
+}
+
+.loading::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 30%;
+  background: #14f1e1;
+  animation: run 1s linear infinite;
+}
+
+@keyframes run {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
