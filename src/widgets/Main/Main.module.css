@@ -52,7 +52,6 @@
 
 
 .btn {
-    color: black;
     color: var(--text-footer);
     border: 1px solid rgb(124 117 117 / 0.61);
     width: 110px;
