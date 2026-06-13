@@ -5,11 +5,12 @@ import s from "./FilteredMovies.module.css"
 import { useState } from "react"
 import type { MoviesResponse } from "@/entities/model/types/baseResponse.ts"
 import { Pagination } from "@/shared/ui/Pagination/Pagination.tsx"
+import { Skeletons } from "@/shared/ui/Skeletons/Skeletons.tsx"
 
 export const FilteredMovies = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
-  const { data } = useGetPopularMovieQuery({ pageNumber: currentPage })
+  const { data, isFetching } = useGetPopularMovieQuery({ pageNumber: currentPage })
   const { data: genre } = useGetGenresQuery()
 
   const [movies, setMovies] = useState<MoviesResponse[] | undefined>()
@@ -74,6 +75,7 @@ export const FilteredMovies = () => {
         setRatingMovies={setRatingMovies}
       />
       <div>
+        {isFetching && <Skeletons skeleton={s.skeleton} />}
         {!movies ? <Cards data={data} /> : <Cards filtered={movies} />}
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
       </div>

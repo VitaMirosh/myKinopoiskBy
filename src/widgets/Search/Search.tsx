@@ -7,13 +7,14 @@ import { Btn } from "@/shared/ui/Btn"
 import { useSearchParams } from "react-router"
 import remove from "./../../assets/img/remove.svg"
 import { Pagination } from "@/shared/ui/Pagination/Pagination.tsx"
+import { Skeletons } from "@/shared/ui/Skeletons/Skeletons.tsx"
 
 export const Search = () => {
   const [params, setParams] = useSearchParams()
   const query = params.get("query") ?? ""
   const [search, setSearch] = useState(query)
   const [currentPage, setCurrentPage] = useState(1)
-  const [trigger, { data }] = useLazyGetSearchKeywordQuery()
+  const [trigger, { data, isLoading, isFetching }] = useLazyGetSearchKeywordQuery()
 
   const searchMovies = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value)
@@ -65,7 +66,10 @@ export const Search = () => {
           </div>
         )}
         <div className={s.paginationConteiner}>
-          {data?.results &&
+          {!isLoading && isFetching ? (
+            <Skeletons />
+          ) : (
+            data?.results &&
             data?.results.map((keyWord) => (
               <ul key={keyWord.id}>
                 <li className={s.cart}>
@@ -76,7 +80,8 @@ export const Search = () => {
                 </li>
                 {keyWord.name}
               </ul>
-            ))}
+            ))
+          )}
         </div>
         <div className={s.pagination}>
           <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />

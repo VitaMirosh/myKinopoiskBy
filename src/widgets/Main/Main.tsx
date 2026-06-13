@@ -42,7 +42,7 @@ export const Main = () => {
       <div className={s.title}>
         {moviesMap.map((movie, index) => (
           <div key={index} className={s.block}>
-            <NavLink to={movie.link} className={({ isActive }) => (isActive ? s.calm : s.calm)}>
+            <NavLink to={movie.link} className={({ isActive }) => (isActive ? s.btn : s.btn)}>
               View more
             </NavLink>
             <movie.component className={s.count} isPagination={false} />
